@@ -1,22 +1,42 @@
-import logo from './logo.svg';
+import Container from 'react-bootstrap/Container';
+import React from 'react';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import Calculator from './components/Calculator/index';
 import './App.css';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <div className="title1">
+          S p l i
+        </div>
+        <div className="title2">
+          t t e r
+        </div>
+        <div>
+          <Container fluid className="mainContainer">
+            <Row>
+              <Col>
+                <Calculator />
+              </Col>
+              <Col>
+                Tip Amounta
+                / person
+
+                Total
+                / person
+
+                Reset
+              </Col>
+            </Row>
+          </Container>
+        </div>
+        <div className="attribution">
+          Challenge by Frontend Mentor.
+          Coded by Kerilet.
+        </div>
       </header>
     </div>
   );
