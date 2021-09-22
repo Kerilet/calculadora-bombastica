@@ -3,6 +3,7 @@ import React from 'react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Calculator from './components/Calculator/index';
+import Reset from './components/Reset/index';
 import './App.css';
 
 function App() {
@@ -11,8 +12,6 @@ function App() {
       <header className="App-header">
         <div className="title1">
           S p l i
-        </div>
-        <div className="title2">
           t t e r
         </div>
         <div>
@@ -22,13 +21,7 @@ function App() {
                 <Calculator />
               </Col>
               <Col>
-                Tip Amounta
-                / person
-
-                Total
-                / person
-
-                Reset
+                <Reset />
               </Col>
             </Row>
           </Container>
