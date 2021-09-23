@@ -2,7 +2,7 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 
 export default () => (
-  <>
+  <div>
     <div className="resultsContainer">
       Tip Amount
       / person
@@ -13,5 +13,5 @@ export default () => (
       Reset
       <Button disabled={false}>Reset</Button>
     </div>
-  </>
+  </div>
 );

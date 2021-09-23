@@ -1,0 +1,34 @@
+.calculator {
+  font-size: 14px;
+  height: 415px;
+  color: #5E7A7D;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.formInput input{
+  background-color: #f3f8fb;
+  width: calc(100% - 8px);
+  font-size: 24px;
+}
+
+.percents {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+}
+
+.percents > div{
+  background-color: #00494D;
+  color: #FFF;
+  font-size: 24px;
+  height: 46px;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+

@@ -1,36 +1,24 @@
-import Container from 'react-bootstrap/Container';
 import React from 'react';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import Calculator from './components/Calculator/index';
-import Reset from './components/Reset/index';
-import './App.css';
+import Calculator from './components/Calculator';
+import Reset from './components/Reset';
+import style from './App.module.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <div className="title1">
-          S p l i
-          t t e r
-        </div>
+    <div className={style.App}>
+      <header className={style.logo}>
         <div>
-          <Container fluid className="mainContainer">
-            <Row>
-              <Col>
-                <Calculator />
-              </Col>
-              <Col>
-                <Reset />
-              </Col>
-            </Row>
-          </Container>
-        </div>
-        <div className="attribution">
-          Challenge by Frontend Mentor.
-          Coded by Kerilet.
+          <img src="./logo.svg" alt="Splitter" />
         </div>
       </header>
+      <article className={style.mainContainer}>
+        <Calculator />
+        <Reset />
+      </article>
+      <div className={style.attribuition}>
+        Challenge by Frontend Mentor.
+        Coded by Kerilet.
+      </div>
     </div>
   );
 }

@@ -1,38 +1,34 @@
 import React from 'react';
-import InputGroup from 'react-bootstrap/InputGroup';
-import Container from 'react-bootstrap/Container';
-import FormControl from 'react-bootstrap/FormControl';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import style from './style.module.css';
 
-export default () => (
-  <>
-    Bill
-    <InputGroup className="mb-3">
-      <FormControl
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </InputGroup>
+export default () => {
+  const percents = ['5%', '10%', '15%', '25%', '50%', '70%'];
+  return (
+    <div className={style.calculator}>
+      <label htmlFor="bill" className={style.formItem}>
+        <div className={style.formLabel}>Bill</div>
+        <div className={style.formInput}>
+          <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
+          <input id="bill" name="bill" placeholder="0.00" />
+        </div>
+      </label>
 
-    Select Tip %
-    <Container className="tip">
-      <Row>
-        <Col className="tipPercentage">5%</Col>
-        <Col className="tipPercentage">10%</Col>
-        <Col className="tipPercentage">15%</Col>
-        <Col className="tipPercentage">25%</Col>
-        <Col className="tipPercentage">50%</Col>
-        <Col className="tipPercentage">Custom</Col>
-      </Row>
-    </Container>
+      <div htmlFor="bill" className={style.formItem}>
+        <div className={style.formLabel}>Select Tip %</div>
 
-    Number of People
-    <InputGroup className="mb-3">
-      <FormControl
-        aria-label="Default"
-        aria-describedby="inputGroup-sizing-default"
-      />
-    </InputGroup>
-  </>
-);
+        <div className={style.percents}>
+          { percents.map((e) => <div key={e}>{e}</div>) }
+        </div>
+      </div>
+
+      <label htmlFor="people" className={style.formItem}>
+        <div className={style.formLabel}>Number of People</div>
+        <div className={style.formInput}>
+          <span><img src="./icon-person.svg" alt="Dollar" /></span>
+
+          <input id="people" name="people" placeholder="0.00" />
+        </div>
+      </label>
+    </div>
+  );
+};
