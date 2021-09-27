@@ -1,15 +1,33 @@
-import React from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-undef */
+import React, { useState, useEffect } from 'react';
 import style from './style.module.css';
 
-export default () => {
-  const percents = ['5%', '10%', '15%', '25%', '50%', '70%'];
+export default (props) => {
+  const percents = ['5', '10', '15', '25', '50', '70'];
+
+  const [bill, setBill] = useState('');
+  const [tip, setTip] = useState('');
+  const [people, setPeople] = useState('');
+
+  useEffect(() => {
+    const nbill = Number.parseFloat(bill);
+    const npeople = Number.parseFloat(people);
+    const ntip = Number.parseFloat(tip);
+
+    const result = nbill + npeople + ntip;
+
+    props.onAddTotal(result);
+  }, [bill, tip, people]);
+
   return (
     <div className={style.calculator}>
       <label htmlFor="bill" className={style.formItem}>
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input id="bill" name="bill" placeholder="0.00" />
+          <input id="bill" name="bill" placeholder="0.00" onChange={(ev) => setBill(ev.target.value)} value={bill} />
+          <div>{bill}</div>
         </div>
       </label>
 
@@ -17,7 +35,13 @@ export default () => {
         <div className={style.formLabel}>Select Tip %</div>
 
         <div className={style.percents}>
-          { percents.map((e) => <div key={e}>{e}</div>) }
+          { percents.map((e) => (
+            <button type="button" onClick={() => setTip(e)} key={e}>
+              {e}
+              %
+            </button>
+          )) }
+          <div>{tip}</div>
         </div>
       </div>
 
@@ -26,7 +50,8 @@ export default () => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input id="people" name="people" placeholder="0.00" />
+          <input id="people" name="people" placeholder="0.00" onChange={(ev) => setPeople(ev.target.value)} value={people} />
+          <div>{people}</div>
         </div>
       </label>
     </div>
