@@ -15,9 +15,15 @@ export default (props) => {
     const npeople = Number.parseFloat(people);
     const ntip = Number.parseFloat(tip);
 
-    const result = nbill + npeople + ntip;
+    const firstValue = nbill * ntip;
+    const secondValue = firstValue / 100;
+    const tipValue = secondValue / npeople;
 
-    props.onAddTotal(result);
+    const totalBill = nbill + tipValue;
+    const billValue = totalBill / people;
+
+    props.onAddTotal(billValue);
+    props.onAddTip(tipValue);
   }, [bill, tip, people]);
 
   return (
@@ -41,6 +47,8 @@ export default (props) => {
               %
             </button>
           )) }
+          <input id="custom" name="custom" placeholder="Custom" onChange={(ev) => setTip(ev.target.value)} value={tip} />
+
           <div>{tip}</div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import style from './style.module.css';
 
 export default (props) => {
   const { total } = props;
+  const { tip } = props;
 
   return (
     <div>
@@ -17,7 +18,7 @@ export default (props) => {
         </div>
 
         <div className={style.numbers}>
-          0.00
+          {tip}
         </div>
 
         <div className={style.informativeText}>
