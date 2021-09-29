@@ -33,3 +33,7 @@
   cursor: pointer;
 }
 
+.percents > button.active {
+  background-color: #F00;
+}
+

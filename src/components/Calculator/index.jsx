@@ -4,11 +4,20 @@ import React, { useState, useEffect } from 'react';
 import style from './style.module.css';
 
 export default (props) => {
-  const percents = ['5', '10', '15', '25', '50', '70'];
+  const percents = ['5', '10', '15', '25', '50'];
 
   const [bill, setBill] = useState('');
   const [tip, setTip] = useState('');
   const [people, setPeople] = useState('');
+
+  const changeBill = (ev) => {
+    ev.preventDefault();
+    const { value } = ev.target;
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(value)) {
+      setBill(value);
+    }
+  };
 
   useEffect(() => {
     const nbill = Number.parseFloat(bill);
@@ -32,7 +41,7 @@ export default (props) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input id="bill" name="bill" placeholder="0.00" onChange={(ev) => setBill(ev.target.value)} value={bill} />
+          <input id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
           <div>{bill}</div>
         </div>
       </label>
@@ -42,7 +51,7 @@ export default (props) => {
 
         <div className={style.percents}>
           { percents.map((e) => (
-            <button type="button" onClick={() => setTip(e)} key={e}>
+            <button type="button" className={tip === e ? style.active : ''} onClick={() => setTip(e)} key={e}>
               {e}
               %
             </button>
