@@ -41,8 +41,7 @@ export default (props) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
-          <div>{bill}</div>
+          <input dir="rtl" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
         </div>
       </label>
 
@@ -56,9 +55,7 @@ export default (props) => {
               %
             </button>
           )) }
-          <input id="custom" name="custom" placeholder="Custom" onChange={(ev) => setTip(ev.target.value)} value={tip} />
-
-          <div>{tip}</div>
+          <input id="custom" name="custom" placeholder="Custom" onChange={(ev) => setTip(ev.target.value)} />
         </div>
       </div>
 
@@ -67,8 +64,7 @@ export default (props) => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input id="people" name="people" placeholder="0.00" onChange={(ev) => setPeople(ev.target.value)} value={people} />
-          <div>{people}</div>
+          <input dir="rtl" id="people" name="people" placeholder="0.00" onChange={(ev) => setPeople(ev.target.value)} value={people} />
         </div>
       </label>
     </div>

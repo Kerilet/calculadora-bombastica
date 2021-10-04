@@ -18,7 +18,7 @@ export default (props) => {
         </div>
 
         <div className={style.numbers}>
-          {tip}
+          {tip || 0}
         </div>
 
         <div className={style.informativeText}>
@@ -29,7 +29,7 @@ export default (props) => {
         </div>
 
         <div className={style.numbers}>
-          {total}
+          {total || 0}
         </div>
 
         <Button disabled={false}>Reset</Button>

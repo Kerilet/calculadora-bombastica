@@ -1,5 +1,7 @@
 .resultsContainer {
     background-color: #00494D;
+    height: 430px;
+    border-radius: 12px;
 }
 
 .informativeText {
