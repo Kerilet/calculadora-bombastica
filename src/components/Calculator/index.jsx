@@ -15,8 +15,22 @@ export default (props) => {
     const { value } = ev.target;
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
+      // eslint-disable-next-line max-len
+      // Intl.NumberFormat('de-DE', { style: 'currency', currency: 'DOL', maximumSignificantDigits: 2 }).format(value);
       setBill(value);
     }
+  };
+
+  const changePeople = (ev) => {
+    ev.preventDefault();
+    const { value } = ev.target;
+    // eslint-disable-next-line no-restricted-globals
+    if (!isNaN(value)) {
+      setPeople(value);
+    }
+    // if (Number.isInteger(value)) {
+    //   setPeople(value);
+    // }
   };
 
   useEffect(() => {
@@ -64,7 +78,7 @@ export default (props) => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input dir="rtl" id="people" name="people" placeholder="0.00" onChange={(ev) => setPeople(ev.target.value)} value={people} />
+          <input dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
         </div>
       </label>
     </div>

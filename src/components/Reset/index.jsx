@@ -7,6 +7,10 @@ export default (props) => {
   const { total } = props;
   const { tip } = props;
 
+  const reset = () => {
+    console.log('hello');
+  };
+
   return (
     <div>
       <div className={style.resultsContainer}>
@@ -32,7 +36,7 @@ export default (props) => {
           {total || 0}
         </div>
 
-        <Button disabled={false}>Reset</Button>
+        <Button disabled={false} onClick={reset}>Reset</Button>
       </div>
     </div>
   );
