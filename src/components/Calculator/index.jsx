@@ -9,14 +9,19 @@ export default (props) => {
   const [bill, setBill] = useState('');
   const [tip, setTip] = useState('');
   const [people, setPeople] = useState('');
+  const [focused, setFocused] = useState(false);
+
+  const focusCustom = () => setFocused(true);
+  const clickTip = (e) => {
+    setTip(e);
+    setFocused(false);
+  };
 
   const changeBill = (ev) => {
     ev.preventDefault();
     const { value } = ev.target;
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
-      // eslint-disable-next-line max-len
-      // Intl.NumberFormat('de-DE', { style: 'currency', currency: 'DOL', maximumSignificantDigits: 2 }).format(value);
       setBill(value);
     }
   };
@@ -25,7 +30,7 @@ export default (props) => {
     ev.preventDefault();
     const { value } = ev.target;
     // eslint-disable-next-line no-restricted-globals
-    if (!isNaN(value)) {
+    if (!isNaN(value) && value.indexOf('.') < 0) {
       setPeople(value);
     }
     // if (Number.isInteger(value)) {
@@ -55,7 +60,7 @@ export default (props) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input dir="rtl" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
+          <input type="number" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} autoComplete="off" />
         </div>
       </label>
 
@@ -64,12 +69,13 @@ export default (props) => {
 
         <div className={style.percents}>
           { percents.map((e) => (
-            <button type="button" className={tip === e ? style.active : ''} onClick={() => setTip(e)} key={e}>
+            <button type="button" className={tip === e && !focused ? style.active : ''} onClick={() => clickTip(e)} key={e}>
               {e}
               %
             </button>
           )) }
-          <input id="custom" name="custom" placeholder="Custom" onChange={(ev) => setTip(ev.target.value)} />
+          {/* {focused.toString()} */}
+          <input id="custom" type="number" maxLength="2" name="custom" placeholder="Custom" value={focused ? tip : ''} onFocus={focusCustom} onChange={(ev) => setTip(ev.target.value)} />
         </div>
       </div>
 
@@ -78,7 +84,7 @@ export default (props) => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
+          <input type="number" dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
         </div>
       </label>
     </div>

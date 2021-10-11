@@ -3,12 +3,10 @@ import React from 'react';
 import Button from 'react-bootstrap/Button';
 import style from './style.module.css';
 
-export default (props) => {
-  const { total } = props;
-  const { tip } = props;
-
+export default ({ total, tip }) => {
   const reset = () => {
-    console.log('hello');
+    const now = new Date();
+    console.log(now);
   };
 
   return (
@@ -22,7 +20,7 @@ export default (props) => {
         </div>
 
         <div className={style.numbers}>
-          {tip || 0}
+          { tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : 0}
         </div>
 
         <div className={style.informativeText}>
@@ -33,7 +31,7 @@ export default (props) => {
         </div>
 
         <div className={style.numbers}>
-          {total || 0}
+          { total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : 0}
         </div>
 
         <Button disabled={false} onClick={reset}>Reset</Button>
