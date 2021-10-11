@@ -27,7 +27,7 @@
   outline: none;
 }
 
-.formInput span { 
+.formInput span {
   width: 40px;
   height: 29px;
   text-align: center;
@@ -43,6 +43,7 @@
 
 .percents > button{
   background-color: #00494D;
+  border: 5px solid #00494D;
   color: #FFF;
   font-family: 'Space Mono', monospace;
   font-size: 24px;

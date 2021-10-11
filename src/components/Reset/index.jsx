@@ -1,12 +1,13 @@
+/* eslint-disable no-console */
 /* eslint-disable react/prop-types */
 import React from 'react';
 import Button from 'react-bootstrap/Button';
 import style from './style.module.css';
 
-export default ({ total, tip }) => {
+export default ({ total, tip }, props) => {
   const reset = () => {
     const now = new Date();
-    console.log(now);
+    props.onReset(now);
   };
 
   return (
@@ -20,7 +21,7 @@ export default ({ total, tip }) => {
         </div>
 
         <div className={style.numbers}>
-          { tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : 0}
+          { tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : '$0.00'}
         </div>
 
         <div className={style.informativeText}>
@@ -31,10 +32,10 @@ export default ({ total, tip }) => {
         </div>
 
         <div className={style.numbers}>
-          { total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : 0}
+          { total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : '$0.00'}
         </div>
 
-        <Button disabled={false} onClick={reset}>Reset</Button>
+        <Button disabled={false} className={style.resetButton} onClick={() => reset}>RESET</Button>
       </div>
     </div>
   );
