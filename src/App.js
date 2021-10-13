@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Calculator from './components/Calculator';
 import Reset from './components/Reset';
 import style from './App.module.css';
@@ -6,12 +6,7 @@ import style from './App.module.css';
 function App() {
   const [total, setTotal] = useState(0);
   const [tip, setTip] = useState(0);
-  const [reseted, setReseted] = useState([]);
-
-  useEffect(() => {
-    setTotal(0);
-    setTip(0);
-  }, reseted);
+  const [reseted, setReseted] = useState(new Date());
 
   return (
     <div className={style.App}>
@@ -24,7 +19,6 @@ function App() {
         </div>
       </header>
       <article className={style.mainContainer}>
-        {reseted}
         <Calculator
           onAddTotal={
             (value) => setTotal(value)
@@ -32,6 +26,7 @@ function App() {
           onAddTip={
           (value) => setTip(value)
         }
+          reseted={reseted}
         />
 
         <Reset total={total} tip={tip} onReset={(value) => setReseted(value)} />

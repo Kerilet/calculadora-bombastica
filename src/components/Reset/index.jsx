@@ -1,41 +1,54 @@
-/* eslint-disable no-console */
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
-import Button from 'react-bootstrap/Button';
 import style from './style.module.css';
 
-export default ({ total, tip }, props) => {
+export default ({ total, tip, onReset }) => {
   const reset = () => {
     const now = new Date();
-    props.onReset(now);
+    onReset(now);
+    const scrollToTop = () => {
+      document.getElementById('root').scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    };
+    scrollToTop();
   };
 
   return (
     <div>
       <div className={style.resultsContainer}>
-        <div className={style.informativeText}>
-          Tip Amount
-        </div>
-        <div className={style.personText}>
-          / person
-        </div>
+        <div>
+          <div className={style.conjointedInfo}>
+            <div className={style.informativeText}>
+              Tip Amount
+              <div className={style.personText}>
+                / person
+              </div>
+            </div>
 
-        <div className={style.numbers}>
-          { tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : '$0.00'}
-        </div>
+            <div className={style.numbers}>
+              {tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : '$0.00'}
+            </div>
+          </div>
 
-        <div className={style.informativeText}>
-          Total
-        </div>
-        <div className={style.personText}>
-          / person
-        </div>
+          <div className={style.conjointedInfo}>
+            <div className={style.informativeText}>
+              Total
+              <div className={style.personText}>
+                / person
+              </div>
+            </div>
 
-        <div className={style.numbers}>
-          { total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : '$0.00'}
+            <div className={style.numbers}>
+              {total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : '$0.00'}
+            </div>
+          </div>
         </div>
-
-        <Button disabled={false} className={style.resetButton} onClick={() => reset}>RESET</Button>
+        <button type="button" disabled={false} className={style.resetButton} onClick={(ev) => reset(ev)}>
+          RESET
+        </button>
       </div>
     </div>
   );

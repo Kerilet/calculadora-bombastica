@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './style.module.css';
 
-export default (props) => {
+export default ({ reseted, onAddTotal, onAddTip }) => {
   const percents = ['5', '10', '15', '25', '50'];
 
   const [bill, setBill] = useState('');
@@ -50,9 +50,15 @@ export default (props) => {
     const totalBill = nbill + tipValue;
     const billValue = totalBill / people;
 
-    props.onAddTotal(billValue);
-    props.onAddTip(tipValue);
+    onAddTotal(billValue);
+    onAddTip(tipValue);
   }, [bill, tip, people]);
+
+  useEffect(() => {
+    setBill('');
+    setTip('');
+    setPeople('');
+  }, [reseted]);
 
   return (
     <div className={style.calculator}>
@@ -60,7 +66,7 @@ export default (props) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input type="number" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} autoComplete="off" />
+          <input type="number" step=".01" autoComplete="off" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
         </div>
       </label>
 
@@ -75,7 +81,7 @@ export default (props) => {
             </button>
           )) }
           {/* {focused.toString()} */}
-          <input id="custom" type="number" maxLength="2" name="custom" placeholder="Custom" value={focused ? tip : ''} onFocus={focusCustom} onChange={(ev) => setTip(ev.target.value)} />
+          <input id="custom" type="number" step=".01" autoComplete="off" maxLength="2" name="custom" placeholder="Custom" value={focused ? tip : ''} onFocus={focusCustom} onChange={(ev) => setTip(ev.target.value)} />
         </div>
       </div>
 
@@ -84,7 +90,7 @@ export default (props) => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input type="number" dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
+          <input type="number" step=".01" autoComplete="off" dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
         </div>
       </label>
     </div>
