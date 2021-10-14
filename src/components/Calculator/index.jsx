@@ -66,7 +66,7 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input type="number" step=".01" autoComplete="off" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0.00" onChange={changeBill} value={bill} />
+          <input type="number" step=".01" autoComplete="off" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0" onChange={changeBill} value={bill} />
         </div>
       </label>
 

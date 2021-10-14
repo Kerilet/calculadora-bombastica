@@ -3,7 +3,9 @@
 import React from 'react';
 import style from './style.module.css';
 
-export default ({ total, tip, onReset }) => {
+export default ({
+  total, tip, onReset, disabled, onInfo,
+}) => {
   const reset = () => {
     const now = new Date();
     onReset(now);
@@ -15,6 +17,10 @@ export default ({ total, tip, onReset }) => {
     };
     scrollToTop();
   };
+
+  if (total || tip) {
+    onInfo(true);
+  }
 
   return (
     <div>
@@ -46,7 +52,7 @@ export default ({ total, tip, onReset }) => {
             </div>
           </div>
         </div>
-        <button type="button" disabled={false} className={style.resetButton} onClick={(ev) => reset(ev)}>
+        <button type="button" disabled={disabled} className={disabled ? style.disabledButton : style.resetButton} onClick={(ev) => reset(ev)}>
           RESET
         </button>
       </div>

@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useState } from 'react';
 import Calculator from './components/Calculator';
 import Reset from './components/Reset';
@@ -7,6 +8,7 @@ function App() {
   const [total, setTotal] = useState(0);
   const [tip, setTip] = useState(0);
   const [reseted, setReseted] = useState(new Date());
+  const [disabled, setDisabled] = useState(true);
 
   return (
     <div className={style.App}>
@@ -29,7 +31,7 @@ function App() {
           reseted={reseted}
         />
 
-        <Reset total={total} tip={tip} onReset={(value) => setReseted(value)} />
+        <Reset total={total} tip={tip} onReset={(value) => setReseted(value)} disabled={disabled} onInfo={(value) => setDisabled(value)} />
       </article>
       <div className={style.attribuition}>
         Challenge by Frontend Mentor.Coded by Kerilet.

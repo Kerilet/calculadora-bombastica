@@ -12,7 +12,8 @@
   position: relative;
 }
 
-.formInput input{
+.formInput input {
+  font-family: 'Space Mono', monospace;
   background-color: #f3f8fb;
   border: 3px solid #f3f8fb;
   border-radius: 5px;
@@ -20,8 +21,14 @@
   font-size: 24px;
   outline: none;
   transition: all 250ms ease-in-out;
+  color: #00494D;
+  font-weight: bold;
 }
 
+.formInput input::placeholder {
+  color: #a5b7b7;
+  font-weight: normal;
+}
 
 .formInput input:focus {
   border: 3px solid #26C0AB;
@@ -42,7 +49,7 @@
   grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
 }
 
-.percents > button{
+.percents > button {
   background-color: #00494D;
   border: 5px solid #00494D;
   color: #FFF;
@@ -63,16 +70,19 @@
   font-weight: bold;
 }
 
-.percents > input{
+.percents > input {
   background-color: #f3f8fb;
   border: 5px solid #f3f8fb;
   border-radius: 5px;
   width: calc(100% - 8px);
   font-size: 24px;
   outline: none;
+  font-family: 'Space Mono', monospace;
 }
 
 .percents > input::placeholder {
-  padding-left: 13px;
+  padding-left: 7px;
   color: #5E7A7D;
+  font-family: 'Space Mono', monospace;
+  font-weight: bold;
 }
