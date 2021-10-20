@@ -23,6 +23,15 @@
   transition: all 250ms ease-in-out;
   color: #00494D;
   font-weight: bold;
+  text-align: right;
+}
+.formInput input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.formInput input[type=number] {
+  -moz-appearance: textfield;
 }
 
 .formInput input::placeholder {

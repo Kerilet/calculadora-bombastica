@@ -4,7 +4,7 @@ import React from 'react';
 import style from './style.module.css';
 
 export default ({
-  total, tip, onReset, disabled, onInfo,
+  total, tip, onReset,
 }) => {
   const reset = () => {
     const now = new Date();
@@ -18,12 +18,6 @@ export default ({
     scrollToTop();
   };
 
-  if (total) {
-    onInfo(true);
-  } else {
-    onInfo(false);
-  }
-
   return (
     <div>
       <div className={style.resultsContainer}>
@@ -36,7 +30,7 @@ export default ({
               </div>
             </div>
 
-            <div className={style.numbers}>
+            <div className={style.numbers} data-testid="tipText">
               {tip ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(tip) : '$0.00'}
             </div>
           </div>
@@ -49,12 +43,12 @@ export default ({
               </div>
             </div>
 
-            <div className={style.numbers}>
+            <div className={style.numbers} data-testid="totalText">
               {total ? Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(total) : '$0.00'}
             </div>
           </div>
         </div>
-        <button type="button" disabled={disabled} className={total ? style.resetButton : style.disabledButton} onClick={(ev) => reset(ev)}>
+        <button type="button" disabled={!total} className={total ? style.resetButton : style.disabledButton} onClick={(ev) => reset(ev)}>
           RESET
         </button>
       </div>

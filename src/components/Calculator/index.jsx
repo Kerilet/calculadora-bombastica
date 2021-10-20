@@ -20,21 +20,13 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
   };
 
   const changeBill = (ev) => {
-    // debugger;
     ev.preventDefault();
     const { value } = ev.target;
-    if (value === '.') {
-      // eslint-disable-next-line no-restricted-globals
-      if (!isNaN(value)) {
-        setBill(value);
-      }
-    }
-    const numberPrice = parseInt(value);
-    const priceString = numberPrice.toFixed(2);
-    const priceNumber = Number.parseInt(priceString, 0);
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
-      setBill(priceNumber);
+      const indexPoint = value.indexOf('.');
+      const fixed = value.substr(0, indexPoint >= 0 ? indexPoint + 3 : 7);
+      setBill(fixed);
     }
   };
 
@@ -78,7 +70,7 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
         <div className={style.formLabel}>Bill</div>
         <div className={style.formInput}>
           <span><img src="./icon-dollar.svg" alt="Dollar" /></span>
-          <input type="number" step=".01" autoComplete="off" dir="rtl" maxLength="9" id="bill" name="bill" placeholder="0" onChange={changeBill} value={bill} />
+          <input data-testid="inputBill" type="number" step=".01" autoComplete="off" maxLength="9" id="bill" name="bill" placeholder="0" onChange={changeBill} value={bill} />
         </div>
       </label>
 
@@ -93,7 +85,7 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
             </button>
           )) }
           {/* {focused.toString()} */}
-          <input id="custom" type="number" step=".01" autoComplete="off" maxLength="2" name="custom" placeholder="Custom" value={focused ? tip : ''} onFocus={focusCustom} onChange={(ev) => setTip(ev.target.value)} />
+          <input id="custom" type="number" data-testid="percentageInput" step=".01" autoComplete="off" maxLength="2" name="custom" placeholder="Custom" value={focused ? tip : ''} onFocus={focusCustom} onChange={(ev) => setTip(ev.target.value)} />
         </div>
       </div>
 
@@ -102,7 +94,7 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
         <div className={style.formInput}>
           <span><img src="./icon-person.svg" alt="Dollar" /></span>
 
-          <input type="number" step=".01" autoComplete="off" dir="rtl" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
+          <input type="number" data-testid="inputPeople" step=".01" autoComplete="off" id="people" name="people" placeholder="0" onChange={changePeople} value={people} />
         </div>
       </label>
     </div>

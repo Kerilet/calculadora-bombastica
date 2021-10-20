@@ -8,7 +8,6 @@ function App() {
   const [total, setTotal] = useState(0);
   const [tip, setTip] = useState(0);
   const [reseted, setReseted] = useState(new Date());
-  const [disabled, setDisabled] = useState(true);
 
   return (
     <div className={style.App}>
@@ -31,7 +30,7 @@ function App() {
           reseted={reseted}
         />
 
-        <Reset total={total} tip={tip} onReset={(value) => setReseted(value)} disabled={disabled} onInfo={(value) => setDisabled(value)} />
+        <Reset total={total} tip={tip} onReset={(value) => setReseted(value)} />
       </article>
       <div className={style.attribuition}>
         Challenge by Frontend Mentor.Coded by Kerilet.
