@@ -1,3 +1,5 @@
+/* eslint-disable radix */
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 /* eslint-disable no-undef */
 import React, { useState, useEffect } from 'react';
@@ -18,11 +20,21 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
   };
 
   const changeBill = (ev) => {
+    // debugger;
     ev.preventDefault();
     const { value } = ev.target;
+    if (value === '.') {
+      // eslint-disable-next-line no-restricted-globals
+      if (!isNaN(value)) {
+        setBill(value);
+      }
+    }
+    const numberPrice = parseInt(value);
+    const priceString = numberPrice.toFixed(2);
+    const priceNumber = Number.parseInt(priceString, 0);
     // eslint-disable-next-line no-restricted-globals
     if (!isNaN(value)) {
-      setBill(value);
+      setBill(priceNumber);
     }
   };
 

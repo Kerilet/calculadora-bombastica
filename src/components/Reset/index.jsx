@@ -18,8 +18,10 @@ export default ({
     scrollToTop();
   };
 
-  if (total || tip) {
+  if (total) {
     onInfo(true);
+  } else {
+    onInfo(false);
   }
 
   return (
@@ -52,7 +54,7 @@ export default ({
             </div>
           </div>
         </div>
-        <button type="button" disabled={disabled} className={disabled ? style.disabledButton : style.resetButton} onClick={(ev) => reset(ev)}>
+        <button type="button" disabled={disabled} className={total ? style.resetButton : style.disabledButton} onClick={(ev) => reset(ev)}>
           RESET
         </button>
       </div>

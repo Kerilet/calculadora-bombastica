@@ -47,11 +47,11 @@
 
 .resetButton {
   width: calc(100% - 60px);
-  background-color: #0d686d;
+  background-color: #26C0AB;
   border: 0;
   border-radius: 5px;
   font-weight: bold;
-  color: #095c61;
+  color: #00494D;
   font-family: 'Space Mono', monospace;
   font-size: 24px;
   cursor: pointer;
@@ -63,6 +63,6 @@
 }
 
 .resetButton:hover {
-  background-color: #26C0AB;
+  background-color: #9fe8e9;
   color: #00494D;
 }
