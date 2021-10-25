@@ -23,7 +23,7 @@ test('expect total value to be $55.00 and tip value to be $5.00 when bill = 100,
   fireEvent.click(screen.getByText('10%'));
   const bill = screen.getByTestId('totalText');
   const tip = screen.getByTestId('tipText');
-  expect(bill).toHaveTextContent('$54.00');
+  expect(bill).toHaveTextContent('$55.00');
   expect(tip).toHaveTextContent('$5.00');
 });
 
