@@ -9,13 +9,14 @@ export default ({
   const reset = () => {
     const now = new Date();
     onReset(now);
-    const scrollToTop = () => {
-      document.getElementById('root').scrollTo({
-        top: 0,
-        behavior: 'smooth',
-      });
-    };
-    scrollToTop();
+    // const scrollToTop = () => {
+    //   const rootDocument = document.getElementById('root');
+    //   rootDocument.scrollTo({
+    //     top: 0,
+    //     behavior: 'smooth',
+    //   });
+    // };
+    // scrollToTop();
   };
 
   return (
@@ -48,7 +49,7 @@ export default ({
             </div>
           </div>
         </div>
-        <button type="button" disabled={!total} className={total ? style.resetButton : style.disabledButton} onClick={(ev) => reset(ev)}>
+        <button type="button" data-testid="resetButton" disabled={!total} className={total ? style.resetButton : style.disabledButton} onClick={(ev) => reset(ev)}>
           RESET
         </button>
       </div>

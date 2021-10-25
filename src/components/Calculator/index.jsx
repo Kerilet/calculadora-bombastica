@@ -51,7 +51,7 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
     const secondValue = firstValue / 100;
     const tipValue = secondValue / npeople;
 
-    const totalBill = nbill + tipValue;
+    const totalBill = nbill + ntip;
     const billValue = totalBill / people;
 
     onAddTotal(billValue);

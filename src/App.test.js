@@ -2,13 +2,13 @@ import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import App from './App';
 
-test('expect reset button is available', () => {
+test('expect reset button to be truthy', () => {
   render(<App />);
   const linkElement = screen.getByText(/RESET/i);
   expect(linkElement).toBeTruthy();
 });
 
-test('expect when app starts, total and tip per person are $0.00', () => {
+test('expect total and tip values to be $0.00 when app starts', () => {
   render(<App />);
   const totalText = screen.getByTestId('totalText');
   const tipText = screen.getByTestId('tipText');
@@ -16,11 +16,65 @@ test('expect when app starts, total and tip per person are $0.00', () => {
   expect(tipText).toHaveTextContent('$0.00');
 });
 
-test('expect when add bill 100, 10% tip and 2 people should be total 55', () => {
+test('expect total value to be $55.00 and tip value to be $5.00 when bill = 100, tip = 10 and people = 2', () => {
   render(<App />);
   fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
   fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '2' } });
   fireEvent.click(screen.getByText('10%'));
   const bill = screen.getByTestId('totalText');
+  const tip = screen.getByTestId('tipText');
   expect(bill).toHaveTextContent('$55.00');
+  expect(tip).toHaveTextContent('$5.00');
+});
+
+test('expect total value to be $102.00 and tip value to be $2.00 when bill = 100, tip = 2 and people = 1', () => {
+  render(<App />);
+  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
+  fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
+  fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '2' } });
+  const bill = screen.getByTestId('totalText');
+  const tip = screen.getByTestId('tipText');
+  expect(bill).toHaveTextContent('$102.00');
+  expect(tip).toHaveTextContent('$2.00');
+});
+
+test('expect reset button to have the "disabledButton" class if total value equals 0', () => {
+  render(<App />);
+  const bill = screen.getByTestId('totalText');
+  const reset = screen.getByTestId('resetButton');
+  if (bill === '$0.0') {
+    expect(reset).toHaveClass('disabledButton');
+  }
+});
+
+test('expect reset button to have the "reset" class if total value is different than 0', () => {
+  render(<App />);
+  const reset = screen.getByTestId('resetButton');
+  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
+  fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
+  fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '2' } });
+  expect(reset).toHaveClass('resetButton');
+});
+
+test('expect total value and tip value to be $0.00 when reset button is clicked', () => {
+  render(<App />);
+  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
+  fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
+  fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '2' } });
+  const bill = screen.getByTestId('totalText');
+  const tip = screen.getByTestId('tipText');
+  fireEvent.click(screen.getByTestId('resetButton'));
+  expect(bill).toHaveTextContent('$0.00');
+  expect(tip).toHaveTextContent('$0.00');
+});
+
+test('expect total value to be less than $3.000.000.000', () => {
+  render(<App />);
+  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '3000000000' } });
+  fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
+  fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '0' } });
+  const bill = screen.getByTestId('totalText');
+  const tip = screen.getByTestId('tipText');
+  expect(bill).toHaveTextContent('$3,000,000.00');
+  expect(tip).toHaveTextContent('$0.00');
 });
