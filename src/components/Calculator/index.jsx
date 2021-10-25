@@ -22,24 +22,16 @@ export default ({ reseted, onAddTotal, onAddTip }) => {
   const changeBill = (ev) => {
     ev.preventDefault();
     const { value } = ev.target;
-    // eslint-disable-next-line no-restricted-globals
-    if (!isNaN(value)) {
-      const indexPoint = value.indexOf('.');
-      const fixed = value.substr(0, indexPoint >= 0 ? indexPoint + 3 : 7);
-      setBill(fixed);
-    }
+    const indexPoint = value.indexOf('.');
+    const fixed = value.substr(0, indexPoint >= 0 ? indexPoint + 3 : 7);
+    setBill(fixed);
   };
 
   const changePeople = (ev) => {
     ev.preventDefault();
     const { value } = ev.target;
     // eslint-disable-next-line no-restricted-globals
-    if (!isNaN(value) && value.indexOf('.') < 0) {
-      setPeople(value);
-    }
-    // if (Number.isInteger(value)) {
-    //   setPeople(value);
-    // }
+    setPeople(value.replace(/\./g, ''));
   };
 
   useEffect(() => {

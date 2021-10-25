@@ -23,7 +23,7 @@ test('expect total value to be $55.00 and tip value to be $5.00 when bill = 100,
   fireEvent.click(screen.getByText('10%'));
   const bill = screen.getByTestId('totalText');
   const tip = screen.getByTestId('tipText');
-  expect(bill).toHaveTextContent('$55.00');
+  expect(bill).toHaveTextContent('$54.00');
   expect(tip).toHaveTextContent('$5.00');
 });
 
@@ -53,12 +53,13 @@ test('expect reset button to have the "reset" class if total value is different 
   fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
   fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
   fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '2' } });
+  fireEvent.focus(screen.getByTestId('percentageInput'));
   expect(reset).toHaveClass('resetButton');
 });
 
 test('expect total value and tip value to be $0.00 when reset button is clicked', () => {
   render(<App />);
-  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100' } });
+  fireEvent.change(screen.getByTestId('inputBill'), { target: { value: '100.55' } });
   fireEvent.change(screen.getByTestId('inputPeople'), { target: { value: '1' } });
   fireEvent.change(screen.getByTestId('percentageInput'), { target: { value: '2' } });
   const bill = screen.getByTestId('totalText');
@@ -77,4 +78,18 @@ test('expect total value to be less than $3.000.000.000', () => {
   const tip = screen.getByTestId('tipText');
   expect(bill).toHaveTextContent('$3,000,000.00');
   expect(tip).toHaveTextContent('$0.00');
+});
+
+test('expect add a text (non number) bill input value is empty', () => {
+  render(<App />);
+  const billField = screen.getByTestId('inputBill');
+  fireEvent.change(billField, { target: { value: 'jojo' } });
+  expect(billField.getAttribute('value')).toBe('');
+});
+
+test('expect when add 2.5 on number of people, return 25', () => {
+  render(<App />);
+  const inputPeople = screen.getByTestId('inputPeople');
+  fireEvent.change(inputPeople, { target: { value: '2.5' } });
+  expect(inputPeople.getAttribute('value')).toBe('25');
 });
