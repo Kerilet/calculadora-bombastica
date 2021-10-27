@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import style from './style.module.css';
 
 export default () => {
@@ -7,64 +7,49 @@ export default () => {
 
   let codes1 = [];
 
-  let tortureRef = useRef();
-  const spanRef = useRef();
+  const konamiKode = [
+    'ArrowUp',
+    // 'ArrowUp',
+    // 'ArrowDown',
+    // 'ArrowDown',
+    // 'ArrowLeft',
+    // 'ArrowRight',
+    // 'ArrowLeft',
+    // 'ArrowRight',
+    // 'b',
+    // 'a',
+    // 'Enter',
+  ].join('-');
 
-  window.onclick = (event) => {
-    if (event.target === tortureRef) {
-      tortureRef.style.display = 'none';
-    }
+  const konamiCheck = (callback) => {
+    document.addEventListener('keyup', (event) => {
+      codes1.push(event.key);
+      const joined = codes1.join('-');
+      if (konamiKode.startsWith(joined)) {
+        if (konamiKode === joined) {
+          callback();
+        }
+      } else {
+        codes1 = [];
+      }
+    });
   };
 
   useEffect(() => {
-    const writeKonamiCode = () => {
-      tortureRef += '<img src="https://thumbs.gfycat.com/AllConstantChital-size_restricted.gif" alt="Konami Kode duuude!" loading="here\'s an easter egg!">';
-    };
-
-    const konamiKode = [
-      'ArrowUp',
-      'ArrowUp',
-      'ArrowDown',
-      'ArrowDown',
-      'ArrowLeft',
-      'ArrowRight',
-      'ArrowLeft',
-      'ArrowRight',
-      'b',
-      'a',
-      'Enter',
-    ].join('-');
-
-    const konamiCheck = (callback) => {
-      document.addEventListener('keyup', (event) => {
-        codes1.push(event.key);
-        const joined = codes1.join('-');
-        if (konamiKode.startsWith(joined)) {
-          if (konamiKode === joined) {
-            callback();
-            setShowImage(true);
-            tortureRef.style.display = 'block';
-            spanRef.onclick = () => {
-              tortureRef.style.display = 'none';
-            };
-          }
-        } else {
-          codes1 = [];
-        }
-        console.log(joined);
-      });
-    };
-    konamiCheck(writeKonamiCode);
+    konamiCheck(() => setShowImage(true));
   }, []);
 
   return (
     <>
-      <div ref={tortureRef} className={showImage ? style.tortureDance : style.easterEgg}>
-        <div className="modalContent">
-          <span className="close" ref={spanRef}>&times;</span>
-          <img src="https://thumbs.gfycat.com/AllConstantChital-size_restricted.gif" alt="Konami Kode duuude!" loading="here\'s an easter egg!" />
+      {showImage
+        && (
+        <div className={style.easterEgg}>
+          <div className={style.modalContent}>
+            <button type="button" className="close" onClick={() => { setShowImage(false); }}>&times;</button>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/AQx_KMoCgJU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+          </div>
         </div>
-      </div>
+        )}
     </>
   );
 };

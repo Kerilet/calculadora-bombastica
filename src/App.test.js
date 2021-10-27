@@ -93,3 +93,5 @@ test('expect when add 2.5 on number of people, return 25', () => {
   fireEvent.change(inputPeople, { target: { value: '2.5' } });
   expect(inputPeople.getAttribute('value')).toBe('25');
 });
+
+// implement konamiCode test
