@@ -9,24 +9,26 @@ export default () => {
 
   const konamiKode = [
     'ArrowUp',
-    // 'ArrowUp',
-    // 'ArrowDown',
-    // 'ArrowDown',
-    // 'ArrowLeft',
-    // 'ArrowRight',
-    // 'ArrowLeft',
-    // 'ArrowRight',
-    // 'b',
-    // 'a',
-    // 'Enter',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowLeft',
+    'ArrowRight',
+    'b',
+    'a',
+    'Enter',
   ].join('-');
 
   const konamiCheck = (callback) => {
     document.addEventListener('keyup', (event) => {
       codes1.push(event.key);
       const joined = codes1.join('-');
-      if (konamiKode === joined) {
-        callback();
+      if (konamiKode.startsWith(joined)) {
+        if (konamiKode === joined) {
+          callback();
+        }
       } else {
         codes1 = [];
       }
