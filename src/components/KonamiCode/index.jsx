@@ -9,16 +9,16 @@ export default () => {
 
   const konamiKode = [
     'ArrowUp',
-    // 'ArrowUp',
-    // 'ArrowDown',
-    // 'ArrowDown',
-    // 'ArrowLeft',
-    // 'ArrowRight',
-    // 'ArrowLeft',
-    // 'ArrowRight',
-    // 'b',
-    // 'a',
-    // 'Enter',
+    'ArrowUp',
+    'ArrowDown',
+    'ArrowDown',
+    'ArrowLeft',
+    'ArrowRight',
+    'ArrowLeft',
+    'ArrowRight',
+    'b',
+    'a',
+    'Enter',
   ].join('-');
 
   const konamiCheck = (callback) => {
@@ -43,10 +43,10 @@ export default () => {
     <>
       {showImage
         && (
-        <div className={style.easterEgg}>
+        <div className={style.easterEgg} data-testid="easterEgg">
           <div className={style.modalContent}>
-            <button type="button" className="close" onClick={() => { setShowImage(false); }}>&times;</button>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/AQx_KMoCgJU" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+            <button type="button" data-testid="easterEggButton" className="close" onClick={() => { setShowImage(false); }}>&times;</button>
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/AQx_KMoCgJU?autoplay=1" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
           </div>
         </div>
         )}

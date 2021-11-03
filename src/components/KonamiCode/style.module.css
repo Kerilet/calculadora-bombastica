@@ -10,6 +10,26 @@
 
 .easterEgg .modalContent {
   margin: auto;
-  border: 1px solid red;
+  padding-right: 60px;
+  display: grid;
 }
 
+.easterEgg .modalContent button {
+  margin-right: 20px;
+  margin-bottom: 10px;
+  max-width: 5%;
+  background-color: #26C0AB;
+  border: 0;
+  border-radius: 5px;
+  font-weight: bold;
+  color: #00494D;
+  font-family: 'Space Mono', monospace;
+  cursor: pointer;
+  text-align: center;
+  transition: all 250ms cubic-bezier(0.695, 0.135, 0.935, 0.145);
+}
+
+.easterEgg .modalContent button:hover {
+  background-color: #9fe8e9;
+  color: #00494D;
+}

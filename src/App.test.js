@@ -94,4 +94,45 @@ test('expect when add 2.5 on number of people, return 25', () => {
   expect(inputPeople.getAttribute('value')).toBe('25');
 });
 
-// implement konamiCode test
+test('expect Konami Code easter egg to NOT fire ', () => {
+  render(<App />);
+  const easterEggReset = screen.queryByTestId('easterEgg');
+  expect(easterEggReset).not.toBeInTheDocument();
+});
+
+test('expect Konami Code easter egg to be fired ', () => {
+  render(<App />);
+  const app = screen.getByTestId('App');
+  fireEvent.keyUp(app, { key: 'ArrowUp', code: 'ArrowUp', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowUp', code: 'ArrowUp', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowDown', code: 'ArrowDown', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowDown', code: 'ArrowDown', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowLeft', code: 'ArrowLeft', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowRight', code: 'ArrowRight', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowLeft', code: 'ArrowLeft', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowRight', code: 'ArrowRight', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'b', code: 'KeyB', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'a', code: 'KeyA', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'Enter', code: 'Enter', charCode: 13 });
+  const easterEgg = screen.getByTestId('easterEgg');
+  expect(easterEgg).toBeTruthy();
+});
+
+test('expect Konami Code easter egg to be closed ', () => {
+  render(<App />);
+  const app = screen.queryByTestId('App');
+  fireEvent.keyUp(app, { key: 'ArrowUp', code: 'ArrowUp', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowUp', code: 'ArrowUp', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowDown', code: 'ArrowDown', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowDown', code: 'ArrowDown', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowLeft', code: 'ArrowLeft', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowRight', code: 'ArrowRight', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowLeft', code: 'ArrowLeft', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'ArrowRight', code: 'ArrowRight', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'b', code: 'KeyB', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'a', code: 'KeyA', charCode: 13 });
+  fireEvent.keyUp(app, { key: 'Enter', code: 'Enter', charCode: 13 });
+  fireEvent.click(screen.getByTestId('easterEggButton'));
+  const easterEggReset = screen.queryByTestId('easterEgg');
+  expect(easterEggReset).not.toBeInTheDocument();
+});
