@@ -10,7 +10,7 @@ function App() {
   const [reseted, setReseted] = useState(new Date());
 
   return (
-    <div className={style.App}>
+    <div className={style.App} data-testid="App">
       <header className={style.logo}>
         <div>
           <img
@@ -19,7 +19,7 @@ function App() {
           />
         </div>
       </header>
-      <article className={style.mainContainer}>
+      <article className={style.mainContainer} data-testid="konami">
         <Calculator
           onAddTotal={
             (value) => setTotal(value)
